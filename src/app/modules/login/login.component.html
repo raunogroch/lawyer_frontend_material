@@ -1,0 +1,29 @@
+<div class="login">
+  <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter your username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter your password</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="centered">
+      <button mat-flat-button color="primary">Primary</button>
+    </div>
+  </form>
+</div>
