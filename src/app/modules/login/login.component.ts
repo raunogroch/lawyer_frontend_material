@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,16 +31,23 @@ import { AuthService } from 'src/app/services/authentication/auth.service';
 export class LoginComponent {
   hide: boolean = true;
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder, private authService: AuthService) {
-    this.loginForm = this.fb.group({
+
+  constructor(
+    private _fb: FormBuilder,
+    private _authService: AuthService,
+    private _router: Router
+  ) {
+    this.loginForm = this._fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
+
   loginSubmit(): void {
-    this.authService.login(this.loginForm.value).subscribe({
+    this._authService.login(this.loginForm.value).subscribe({
       next: (data) => {
-        console.log(data);
+        localStorage.setItem('UUID', JSON.stringify(data));
+        this._router.navigate(['dashboard']);
       },
       error: (err) => {
         console.error(err);

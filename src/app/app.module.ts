@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DashboardComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginComponent,
     BrowserAnimationsModule,
+    MainLayoutComponent,
     HttpClientModule,
   ],
   providers: [],
